@@ -16,11 +16,19 @@ def selection_sort( arr ):
 
 
 
-
 # TO-DO:  implement the Bubble Sort function below
 def bubble_sort( arr ):
-
-    return print (arr)
+    finish_loop = True
+    array_length = len(arr)
+    while finish_loop:
+        finish_loop = False
+        for i in range(0, array_length - 1):
+            left_value , right_value = arr[i] , arr[i+1]
+            if left_value > right_value:
+                arr[i] , arr[i+1] = right_value , left_value 
+                finish_loop = True
+        array_length = array_length -1 
+    return arr
 
 
 # STRETCH: implement the Count Sort function below
@@ -28,4 +36,4 @@ def count_sort( arr, maximum=-1 ):
 
     return arr
 
-#selection_sort([4,2,67,34,23,56,23])    
+bubble_sort([1, 5, 8, 4, 2, 9, 6, 0, 3, 7])    
