@@ -1,11 +1,30 @@
-# TO-DO: complete the helper function below to merge 2 sorted arrays
 def merge( arrA, arrB ):
-    print(arrA , arrB)
     elements = len( arrA ) + len( arrB )
-    merged_arr = [0] * elements
-    print("I am here", merged_arr)
+    merged_arr = []#[0] * elements
     
+    longest_array= []
+    if len(arrA) > len(arrB):
+        longest_array = arrA
+        shortest_array = arrB
+    else:
+        longest_array = arrB
+        shortest_array = arrA    
+
+    # COUNTER FOR ARRAY
+    i = 0 
+    for array_item in longest_array:
+        if len(shortest_array) >= i:
+            if array_item <= shortest_array[i]: 
+                merged_arr.append(array_item)
+            else:
+                merged_arr.append(shortest_array[i])
+        else:
+            merged_arr.append(array_item)        
+        i=i+1
+
     return merged_arr
+
+merge( [1,3,6,9,23,34,45], [2,5,15,24,44,55] )
 
 
 # TO-DO: implement the Merge Sort function below USING RECURSION
@@ -22,6 +41,28 @@ def merge_sort( arr ):
             print(i)
 
         return arr
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # STRETCH: implement an in-place merge sort algorithm
