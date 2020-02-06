@@ -1,46 +1,34 @@
 def merge( arrA, arrB ):
     elements = len( arrA ) + len( arrB )
-    merged_arr = []#[0] * elements
+    merged_arr = [0] * elements       
+    count_a, count_b = 0 , 0
     
-    longest_array= []
-    if len(arrA) > len(arrB):
-        longest_array = arrA
-        shortest_array = arrB
-    else:
-        longest_array = arrB
-        shortest_array = arrA    
+    for i in range( 0, elements ):
+        if count_a >= len(arrA):    
+            merged_arr[i] = arrB[count_b]
+            count_b += 1
 
-    # COUNTER FOR ARRAY
-    i = 0 
-    for array_item in longest_array:
-        if len(shortest_array) >= i:
-            if array_item <= shortest_array[i]: 
-                merged_arr.append(array_item)
-            else:
-                merged_arr.append(shortest_array[i])
-        else:
-            merged_arr.append(array_item)        
-        i=i+1
+        elif count_b >= len(arrB):  
+            merged_arr[i] = arrA[count_a]
+            count_a += 1
+
+        elif arrA[count_a] < arrB[count_b]:  
+            merged_arr[i] = arrA[count_a]
+            count_a += 1
+
+        else:  
+            merged_arr[i] = arrB[count_b]
+            count_b += 1
 
     return merged_arr
 
-merge( [1,3,6,9,23,34,45], [2,5,15,24,44,55] )
 
-
-# TO-DO: implement the Merge Sort function below USING RECURSION
 def merge_sort( arr ):
-    #First two Edge cases, when arr is empty and array length iquals one
-    if len(arr) == 0:
-        return []
-    elif len(arr) == 1:
-        return arr
-    else:
-        splitted_list = [[item] for item in arr]
-        initial_call = merge(splitted_list[0] , splitted_list[1])
-        for i in range(2 , len(arr) +1):
-            print(i)
-
-        return arr
+    if len( arr ) > 1:
+       left_array = merge_sort( arr[ 0 : len( arr ) // 2 ] )
+       right_array = merge_sort( arr[ len( arr ) // 2 : ] )
+       arr = merge( left_array, right_array ) 
+    return arr
 
 
 
